@@ -1,0 +1,47 @@
+:root{
+    --primary-color: #007bff;
+    --danger-color: #dc3545;
+    color-scheme: light dark;
+}
+
+.set-bg-opacity {
+    background: rgba(0,0,0,0.5);
+}
+
+.set-blue-opacity{
+    background: rgba(36, 98, 230, 0.2);
+}
+.set-blue-opacity:hover{
+    background: rgba(36, 98, 230, 0.5);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    margin: 0 auto;
+    box-shadow: #007bff 0px 10px 0px 0px, inset 0px 0px 10px 0px #007bff,
+    inset 0px 0px 10px 0px #007bff;
+    background: rgba(0, 0, 0, 0.9);
+}
+
+input {
+    margin-bottom: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+label {
+    margin-top: 10px;
+}
+
+
+.set-box-shadow {
+    box-shadow: #06b6d4 0px 0px 15px, inset rgba(0,163,255,0.8) 0px 0px 20px, #4d00ff 0px 0px 20px, #4d00ff 0px 0px 40px, #4d00ff 0px 0px 80px, #4d00ff 0px 0px 160px, #4d00ff 0px 0px 320px;
+}
