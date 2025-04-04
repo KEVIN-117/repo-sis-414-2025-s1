@@ -1,4 +1,5 @@
-const htmlData = `<input type="checkbox" id="task-modal" class="hidden peer">
+const htmlData = `
+<input type="checkbox" id="task-modal" class="hidden peer">
     <div
         class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-50 hidden peer-checked:flex items-center justify-center">
         <div class="glass rounded-xl max-w-md w-full p-6 modal-animation neon-box-accent">
@@ -21,13 +22,12 @@ const htmlData = `<input type="checkbox" id="task-modal" class="hidden peer">
 
                 <div>
                     <label for="description" class="block text-sm font-medium mb-1">Descripción</label>
-                    <textarea id="description" name="description" rows="4" class="w-full cyber-input rounded-lg"
-                        required></textarea>
+                    <textarea id="description" name="description" rows="4" class="w-full cyber-input rounded-lg" required></textarea>
                 </div>
 
                 <div>
-                    <label for="due-date" class="block text-sm font-medium mb-1">Fecha de Vencimiento</label>
-                    <input id="due-date" name="due-date" type="date" class="w-full cyber-input rounded-lg" required>
+                    <label for="due_date" class="block text-sm font-medium mb-1">Fecha de Vencimiento</label>
+                    <input id="due_date" name="due_date" type="date" class="w-full cyber-input rounded-lg"  required>
                 </div>
 
                 <div class="pt-4">
@@ -37,7 +37,8 @@ const htmlData = `<input type="checkbox" id="task-modal" class="hidden peer">
                 </div>
             </form>
         </div>
-    </div>`;
+    </div>
+`;
 
 const modalContainer = document.createElement("div");
 modalContainer.innerHTML = htmlData;
