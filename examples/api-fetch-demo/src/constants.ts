@@ -1,0 +1,4 @@
+export const API_KEY = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3OWY3YjlkNmMwYWJjNjA4MGUwMzc4NTVkMjY4YjIzOCIsIm5iZiI6MTc0MjQ4MzIwNi45MjgsInN1YiI6IjY3ZGMyZjA2MDg3NDllZmUzNGU3YjVhMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.OKvsz5ZgBWGoUlOnoUJjihSnqyS-Ez_8JiWeX1A0Spg";
+
+
+export const API_URL = "https://api.themoviedb.org/3/trending/all/day";
