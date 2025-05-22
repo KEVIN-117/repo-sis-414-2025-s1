@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 
-<body class="min-h-screen" onload="loadData()">
+<body class="min-h-screen">
     <!-- Background Elements -->
     <div class="particles" id="particles"></div>
     <div class="grid-lines"></div>
@@ -27,6 +27,15 @@
                 Sistema de Gestión de Tareas Avanzado
             </p>
         </header>
+
+        <div class="flex flex-col items-center justify-center w-full gap-5">
+            <p id="value" class="text-2xl font-bold bg-sky-900 p-2 rounded-xl"></p>
+            <div class="flex gap-4 mb-6">
+                <button class="cyber-button flex items-center gap-2 cursor-pointer" id="increment-button">+1</button>
+                <button class="cyber-button flex items-center gap-2 cursor-pointer" id="reset-button">Reset</button>
+                <button class="cyber-button flex items-center gap-2 cursor-pointer" id="decrement-button">-1</button>
+            </div>
+        </div>
 
         <!-- Main Content -->
         <div class="glass rounded-2xl max-w-4xl mx-auto p-6 animate__animated animate__fadeInUp animate__delay-1s">
@@ -183,11 +192,10 @@
     <div id="test"></div>
 
 
-    <script src="./js/test.js"></script>
-    <script src="./js/modal.js"></script>
-    <script src="./js/utils.js">
+    <script src="./src/js/modal.js"></script>
+    <script src="./src/js/utils.js">
     </script>
-    <script src="./js/main.js"></script>
+    <script type="module" src="./src/main.js"></script>
 </body>
 
 </html>

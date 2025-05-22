@@ -14,7 +14,7 @@ const htmlData = `
                 </label>
             </div>
 
-            <form onsubmit="postData(event)" class="space-y-4">
+            <form id="form" class="space-y-4">
                 <div>
                     <label for="name" class="block text-sm font-medium mb-1">Nombre de la Tarea</label>
                     <input id="name" name="name" type="text" class="w-full cyber-input rounded-lg" required>

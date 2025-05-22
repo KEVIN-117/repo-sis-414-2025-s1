@@ -1,55 +1,55 @@
-const URL_DB = "https://gestion-clientes-79743-default-rtdb.firebaseio.com/"
-const cloudName = "disvwilxi"
-const URL_STORAGE= `https://api.cloudinary.com/v1_1/${cloudName}/upload`
-const preset = "clientes"
+const URL_DB = "https://gestion-clientes-79743-default-rtdb.firebaseio.com/";
+const cloudName = "disvwilxi";
+const URL_STORAGE = `https://api.cloudinary.com/v1_1/${cloudName}/upload`;
+const preset = "clientes";
 document.addEventListener("DOMContentLoaded", function () {
-    const mainContent = document.getElementById("main-content");
+  const mainContent = document.getElementById("main-content");
 
-    function loadContent(route) {
-        let content = "";
-        switch (route) {
-            case "home":
-                content = statics.home.content;
-                break;
-            case "register":
-                content = statics.register.content;
-                break;
-            case "gallery":
-                content = statics.profiles.content;
-                break;
-            default:
-                content =
-                    "<h1>Page Not Found</h1><p>The requested page was not found.</p>";
-        }
-
-        mainContent.innerHTML = content;
+  function loadContent(route) {
+    let content = "";
+    switch (route) {
+      case "home":
+        content = statics.home.content;
+        break;
+      case "register":
+        content = statics.register.content;
+        break;
+      case "gallery":
+        content = statics.profiles.content;
+        break;
+      default:
+        content =
+          "<h1>Page Not Found</h1><p>The requested page was not found.</p>";
     }
 
-    loadContent(getRouteFromURL());
+    mainContent.innerHTML = content;
+  }
 
-    document.querySelectorAll("#nav-content a").forEach((link) => {
-        link.addEventListener("click", function (event) {
-            event.preventDefault();
-            const route = this.getAttribute("href").substring(1);
-            loadContent(route);
-            history.pushState({ route }, null, `#${route}`);
-        });
+  loadContent(getRouteFromURL());
+
+  document.querySelectorAll("#nav-content a").forEach((link) => {
+    link.addEventListener("click", function (event) {
+      event.preventDefault();
+      const route = this.getAttribute("href").substring(1);
+      loadContent(route);
+      history.pushState({ route }, null, `#${route}`);
     });
+  });
 
-    window.addEventListener("popstate", function (event) {
-        const route = event.state.route || getRouteFromURL();
-        loadContent(route);
-    });
+  window.addEventListener("popstate", function (event) {
+    const route = event.state.route || getRouteFromURL();
+    loadContent(route);
+  });
 
-    function getRouteFromURL() {
-        return window.location.hash.substring(1) || "home";
-    }
+  function getRouteFromURL() {
+    return window.location.hash.substring(1) || "home";
+  }
 });
 
 const statics = {
-    home: {
-        title: "Home",
-        content: `<div class="bg-white dark:bg-slate-900 overflow-hidden">
+  home: {
+    title: "Home",
+    content: `<div class="bg-white dark:bg-slate-900 overflow-hidden">
                     <div class="relative isolate px-6 pt-14 lg:px-8">
                         <div class="absolute inset-x-0 top-0 -z-10 transform-gpu overflow-hidden blur-3xl" aria-hidden="true">
                             <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-pink-500 to-violet-500 opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
@@ -109,11 +109,11 @@ const statics = {
                             </div>
                         </div>
                     </div>
-                </div>`
-    },
-    register: {
-        title: "Register",
-        content: `
+                </div>`,
+  },
+  register: {
+    title: "Register",
+    content: `
                         <h1 class="text-2xl title w-full text-center set-bg-opacity py-5">
                                     Formulario de registro de usuario
                         </h1>
@@ -171,10 +171,10 @@ const statics = {
                                 </button>
                             </form>
                         </div>`,
-    },
-    profiles:{
-        title: "Profiles",
-        content: `
+  },
+  profiles: {
+    title: "Profiles",
+    content: `
             <div class="set-bg-opacity p-5 flex">
                 <h1 class="text-2xl title w-full text-center flex-1">
                     Perfiles de usuarios
@@ -195,105 +195,109 @@ const statics = {
             <div id="app-profile" class="grid grid-cols-3 gap-5 p-5">
                 
             </div>
-        `
-    }
+        `,
+  },
 };
 
-
-
-function viewProfile(event){
-    event.preventDefault()
-    console.log(event)
-    const image = event.target.files[0]
-    const url = URL.createObjectURL(image)
-    const profile = document.getElementById('profile')
-    profile.innerHTML = `
+function viewProfile(event) {
+  event.preventDefault();
+  console.log(event);
+  const image = event.target.files[0];
+  const url = URL.createObjectURL(image);
+  const profile = document.getElementById("profile");
+  profile.innerHTML = `
         <img src="${url}" alt="${image.name}" class="h-auto w-full rounded-lg">
-    `
+    `;
 }
 
-function fackeData(){
-    const data = [
-            {
-                name: 'Juan',
-                lastName: 'Perez',
-                email: 'alguien@gmail.com',
-                birthdate: '1990-01-01',
-                gender: 'Male',
-                phone: '12345678',
-                address: 'Calle 1',
-                avatar: 'https://res.cloudinary.com/disvwilxi/image/upload/v1712812656/wzytiaec8ghq8f0gcdqe.jpg'
-            },
-            {
-                name: 'Maria',
-                lastName: 'Lopez',
-                email: 'alguien@gmail.com',
-                birthdate: '1990-01-01',
-                gender: 'Female',
-                phone: '12345678',
-                address: 'Calle 2',
-                avatar: 'https://firebasestorage.googleapis.com/v0/b/next-dashboard-3cfe2.appspot.com/o/defaultProfile.jpg?alt=media&token=ed606716-5cfb-4816-a9fc-22a1f1ab5462'
-            },
-            {
-                name: 'Juan',
-                lastName: 'Perez',
-                email: 'alguien@gmail.com',
-                birthdate: '1990-01-01',
-                gender: 'Male',
-                phone: '12345678',
-                address: 'Calle 1',
-                avatar: 'https://res.cloudinary.com/disvwilxi/image/upload/v1712812656/wzytiaec8ghq8f0gcdqe.jpg'
-            },
-            {
-                name: 'Maria',
-                lastName: 'Lopez',
-                email: 'alguien@gmail.com',
-                birthdate: '1990-01-01',
-                gender: 'Female',
-                phone: '12345678',
-                address: 'Calle 2',
-                avatar: 'https://firebasestorage.googleapis.com/v0/b/next-dashboard-3cfe2.appspot.com/o/defaultProfile.jpg?alt=media&token=ed606716-5cfb-4816-a9fc-22a1f1ab5462'
-            },
-            {
-                name: 'Juan',
-                lastName: 'Perez',
-                email: 'alguien@gmail.com',
-                birthdate: '1990-01-01',
-                gender: 'Male',
-                phone: '12345678',
-                address: 'Calle 1',
-                avatar: 'https://firebasestorage.googleapis.com/v0/b/next-dashboard-3cfe2.appspot.com/o/faceGirldRb.jpg?alt=media&token=9c1ff84b-859d-4acd-911e-1c08b7ae10e8'
-            },
-            {
-                name: 'Maria',
-                lastName: 'Lopez',
-                email: 'alguien@gmail.com',
-                birthdate: '1990-01-01',
-                gender: 'Female',
-                phone: '12345678',
-                address: 'Calle 2',
-                avatar: 'https://firebasestorage.googleapis.com/v0/b/next-dashboard-3cfe2.appspot.com/o/defaultProfile.jpg?alt=media&token=ed606716-5cfb-4816-a9fc-22a1f1ab5462'
-            }
-        ]
-    return data
+function fackeData() {
+  const data = [
+    {
+      name: "Juan",
+      lastName: "Perez",
+      email: "alguien@gmail.com",
+      birthdate: "1990-01-01",
+      gender: "Male",
+      phone: "12345678",
+      address: "Calle 1",
+      avatar:
+        "https://res.cloudinary.com/disvwilxi/image/upload/v1712812656/wzytiaec8ghq8f0gcdqe.jpg",
+    },
+    {
+      name: "Maria",
+      lastName: "Lopez",
+      email: "alguien@gmail.com",
+      birthdate: "1990-01-01",
+      gender: "Female",
+      phone: "12345678",
+      address: "Calle 2",
+      avatar:
+        "https://firebasestorage.googleapis.com/v0/b/next-dashboard-3cfe2.appspot.com/o/defaultProfile.jpg?alt=media&token=ed606716-5cfb-4816-a9fc-22a1f1ab5462",
+    },
+    {
+      name: "Juan",
+      lastName: "Perez",
+      email: "alguien@gmail.com",
+      birthdate: "1990-01-01",
+      gender: "Male",
+      phone: "12345678",
+      address: "Calle 1",
+      avatar:
+        "https://res.cloudinary.com/disvwilxi/image/upload/v1712812656/wzytiaec8ghq8f0gcdqe.jpg",
+    },
+    {
+      name: "Maria",
+      lastName: "Lopez",
+      email: "alguien@gmail.com",
+      birthdate: "1990-01-01",
+      gender: "Female",
+      phone: "12345678",
+      address: "Calle 2",
+      avatar:
+        "https://firebasestorage.googleapis.com/v0/b/next-dashboard-3cfe2.appspot.com/o/defaultProfile.jpg?alt=media&token=ed606716-5cfb-4816-a9fc-22a1f1ab5462",
+    },
+    {
+      name: "Juan",
+      lastName: "Perez",
+      email: "alguien@gmail.com",
+      birthdate: "1990-01-01",
+      gender: "Male",
+      phone: "12345678",
+      address: "Calle 1",
+      avatar:
+        "https://firebasestorage.googleapis.com/v0/b/next-dashboard-3cfe2.appspot.com/o/faceGirldRb.jpg?alt=media&token=9c1ff84b-859d-4acd-911e-1c08b7ae10e8",
+    },
+    {
+      name: "Maria",
+      lastName: "Lopez",
+      email: "alguien@gmail.com",
+      birthdate: "1990-01-01",
+      gender: "Female",
+      phone: "12345678",
+      address: "Calle 2",
+      avatar:
+        "https://firebasestorage.googleapis.com/v0/b/next-dashboard-3cfe2.appspot.com/o/defaultProfile.jpg?alt=media&token=ed606716-5cfb-4816-a9fc-22a1f1ab5462",
+    },
+  ];
+  return data;
 }
 
+async function loadFakeData() {
+  const app = document.getElementById("app-profile");
 
-async function loadFakeData(){
-    const app = document.getElementById('app-profile')
+  const data = await fetch(`${URL_DB}clientes.json`);
 
-    const data = await fetch(`${URL_DB}clientes.json`)
+  console.log(data);
+  const clients = await data.json();
 
-    console.log(data)
-    const clients = await data.json()
+  for (const id in clients) {
+    const user = clients[id];
 
-    for (const id in clients) {
-        const user = clients[id]
-
-        const container = document.createElement('div')
-        container.id = "userContent"
-        container.className = 'flex flex-col border-2 border-gray-300 rounded-lg overflow-hidden shadow-lg'
-        container.innerHTML = `
+    const container = document.createElement("div");
+    container.id = "userContent";
+    container.className =
+      "flex flex-col border-2 border-gray-300 rounded-lg overflow-hidden shadow-lg";
+    container.innerHTML = `
             <div class="">
                 <img src="${user.profile.url}" alt="${user.profile.name}" class="h-[50vh] w-full object-cover">
                 <div class="set-bg-opacity p-5 grid grid-col-1 gap-5">
@@ -341,89 +345,88 @@ async function loadFakeData(){
                     </button>
                 </div>
             </div>
-        `
-        app.appendChild(container)
-    }
+        `;
+    app.appendChild(container);
+  }
 }
 
 // funcionalidad para enviar datos a la base de datos
 
 async function postData(event) {
-    event.preventDefault()//
+  event.preventDefault(); //
 
-    const name = event.target.name.value
-    const lastName = event.target.lastName.value
-    const email = event.target.email.value
-    const birthdate = event.target.birthdate.value
-    const gender = event.target.gender.value
-    const phone = event.target.phone.value
-    const address = event.target.address.value
-    const avatar = event.target.avatar.files[0]
+  const name = event.target.name.value;
+  const lastName = event.target.lastName.value;
+  const email = event.target.email.value;
+  const birthdate = event.target.birthdate.value;
+  const gender = event.target.gender.value;
+  const phone = event.target.phone.value;
+  const address = event.target.address.value;
+  const avatar = event.target.avatar.files[0];
 
-    const formData = new FormData()
+  const formData = new FormData();
 
-    formData.append("file",avatar)
-    formData.append("upload_preset",preset)
+  formData.append("file", avatar);
+  formData.append("upload_preset", preset);
 
-    const response = await fetch(URL_STORAGE, {
-        method:"POST",
-        body: formData
-    })
+  const response = await fetch(URL_STORAGE, {
+    method: "POST",
+    body: formData,
+  });
 
+  const { secure_url, width, height, original_filename, format } =
+    await response.json();
 
-    const {secure_url, width, height, original_filename, format} = await response.json()
+  const data = {
+    name,
+    lastName,
+    email,
+    birthdate,
+    gender,
+    phone,
+    address,
+    profile: {
+      url: secure_url,
+      width,
+      height,
+      name: original_filename,
+      format,
+    },
+  };
 
+  const resDb = await fetch(`${URL_DB}clientes.json`, {
+    method: "POST",
+    body: JSON.stringify(data),
+  });
 
-    const data = {
-        name,
-        lastName,
-        email,
-        birthdate,
-        gender,
-        phone,
-        address,
-        profile:{
-            url: secure_url,
-            width,
-            height,
-            name:original_filename,
-            format
-        }
-    }
-
-    const resDb= await fetch(`${URL_DB}clientes.json`,{
-        method:"POST",
-        body:JSON.stringify(data)
-    })
-
-    if (resDb.ok){
-        alert("Cliente registrado")
-        window.location.reload()
-    }else {
-        alert("Error")
-    }
+  if (resDb.ok) {
+    alert("Cliente registrado");
+    window.location.reload();
+  } else {
+    alert("Error");
+  }
 }
 
-async function deleteClient(id){
-    const  res = await fetch(`${URL_DB}clientes/${id}.json`, {
-        method:"DELETE",
-    })
-    if (res.ok){
-        alert("Cliente Eliminado")
-        window.location.reload()
-    }else {
-        alert("ERROR")
-    }
+async function deleteClient(id) {
+  const res = await fetch(`${URL_DB}clientes/${id}.json`, {
+    method: "DELETE",
+  });
+  if (res.ok) {
+    alert("Cliente Eliminado");
+    window.location.reload();
+  } else {
+    alert("ERROR");
+  }
 }
 
-async function updateClient(id){
-    const data = await fetch(`${URL_DB}clientes/${id}.json`)
-    const user = await data.json()
-    const userContent = document.getElementById("userContent")
-    const div = document.createElement("div")
-    div.className = "absolute top-0 bottom-0"
-    div.id= "userUpdateContent"
-    div.innerHTML = `
+async function updateClient(id) {
+  const data = await fetch(`${URL_DB}clientes/${id}.json`);
+  const user = await data.json();
+  const userContent = document.getElementById("userContent");
+  const div = document.createElement("div");
+  div.className = "absolute top-0 bottom-0";
+  div.id = "userUpdateContent";
+  div.innerHTML = `
         <div class="grid grid-cols-2 gap-5 backdrop-blur-xl set-box-shadow"
             style="box-shadow: 0 0 10px rgba(0, 0, 0, 0.5), ;"
         >
@@ -494,56 +497,55 @@ async function updateClient(id){
                                 </button>
                             </form>
                         </div>
-    `
-    userContent.appendChild(div)
+    `;
+  userContent.appendChild(div);
 }
 
-async function update(event, id){
-    event.preventDefault()
-    const name = event.target.name.value
-    const lastName = event.target.lastName.value
-    const email = event.target.email.value
-    const birthdate = event.target.birthdate.value
-    const gender = event.target.gender.value
-    const phone = event.target.phone.value
-    const address = event.target.address.value
+async function update(event, id) {
+  event.preventDefault();
+  const name = event.target.name.value;
+  const lastName = event.target.lastName.value;
+  const email = event.target.email.value;
+  const birthdate = event.target.birthdate.value;
+  const gender = event.target.gender.value;
+  const phone = event.target.phone.value;
+  const address = event.target.address.value;
 
+  const res = await fetch(`${URL_DB}clientes/${id}.json`);
 
-    const res = await fetch(`${URL_DB}clientes/${id}.json`)
+  const data = await res.json();
 
-    const data = await res.json()
+  const user = {
+    name,
+    lastName,
+    email,
+    birthdate,
+    gender,
+    phone,
+    address,
+  };
 
-    const user = {
-        name,
-        lastName,
-        email,
-        birthdate,
-        gender,
-        phone,
-        address
-    }
+  const fullUser = {
+    ...data,
+    ...user,
+  };
 
-    const fullUser= {
-        ...data,
-        ...user,
-    }
+  const resUpdate = await fetch(`${URL_DB}clientes/${id}.json`, {
+    method: "PATCH",
+    body: JSON.stringify(fullUser),
+  });
 
-    const resUpdate = await fetch(`${URL_DB}clientes/${id}.json`, {
-        method:"PATCH",
-        body: JSON.stringify(fullUser)
-    })
-
-    const userUpdateContent = document.getElementById("userUpdateContent")
-    if (resUpdate.ok) {
-        alert("Usuario Actualizado")
-        userUpdateContent.remove()
-        window.location.reload()
-    }else{
-        alert("Error al actualizar")
-    }
+  const userUpdateContent = document.getElementById("userUpdateContent");
+  if (resUpdate.ok) {
+    alert("Usuario Actualizado");
+    userUpdateContent.remove();
+    window.location.reload();
+  } else {
+    alert("Error al actualizar");
+  }
 }
 
-function cancelUpdate(){
-    const userUpdateContent = document.getElementById("userUpdateContent")
-    userUpdateContent.remove()
+function cancelUpdate() {
+  const userUpdateContent = document.getElementById("userUpdateContent");
+  userUpdateContent.remove();
 }

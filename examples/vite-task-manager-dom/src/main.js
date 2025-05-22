@@ -1,37 +1,12 @@
-const taskConatiner = document.getElementById("app");
+import reset, { increment, decrement } from "./utils/counter";
+import { getData, buildCharacterItem } from "./utils/getData";
+import resetFunction from "./utils/counter";
 
-const tasks = []; // Array
+import { TaskManager, Task } from "./utils/TaskManager";
 
-class Task {
-  constructor(name, description, date) {
-    (this.name = name), (this.description = description), (this.dueDate = date);
-  }
-}
+const taskContainer = document.getElementById("app");
 
-function loadData() {
-  taskConatiner.innerHTML = "";
-
-  const storage = JSON.parse(localStorage.getItem("tasks"));
-  storage.forEach((task) => {
-    const taskHtml = buildTask(task);
-
-    taskConatiner.innerHTML += taskHtml;
-  });
-}
-
-// Placeholder for the postData function
-function postData(event) {
-  event.preventDefault();
-  const form = event.target;
-
-  const name = form.name.value;
-  const description = form.description.value;
-  const dueDate = form.due_date.value;
-  const task = new Task(name, description, dueDate);
-  // tasks.push(task);
-  saveTaskInLocalStorage(task);
-  loadData();
-}
+const form = document.getElementById("form");
 
 function buildTask(task) {
   console.log(task);
@@ -72,17 +47,70 @@ function buildTask(task) {
                 </div>`;
 }
 
-function saveTaskInLocalStorage(task) {
-  console.log("saveTaskInLocalStorage", task);
+let count = 0;
 
-  if (!localStorage.getItem("tasks")) {
-    let tasksArray = [];
-    tasksArray.push(task);
-    localStorage.setItem("tasks", JSON.stringify(tasksArray));
-  } else {
-    const tasksStorage = JSON.parse(localStorage.getItem("tasks"));
-    tasksStorage.push(task);
-    localStorage.clear();
-    localStorage.setItem("tasks", JSON.stringify(tasksStorage));
+const value = document.getElementById("value");
+
+const incrementButton = document.getElementById("increment-button");
+const decrementButton = document.getElementById("decrement-button");
+const resetButton = document.getElementById("reset-button");
+console.log(incrementButton);
+console.log(decrementButton);
+
+value.innerText = count;
+
+incrementButton.addEventListener("click", () => {
+  count = increment(count);
+  value.innerText = count;
+});
+
+decrementButton.addEventListener("click", () => {
+  count = decrement(count);
+  value.innerText = count;
+});
+
+resetButton.addEventListener("click", () => {
+  count = reset();
+  value.innerText = count;
+});
+
+console.log("/////////////////////////////////////////////////////////");
+// const data = await getData();
+
+// console.log(data);
+
+// data.items.forEach((element) => {
+//   const characterCardItem = buildCharacterItem(element);
+//   taskContainer.innerHTML += characterCardItem;
+// });
+
+async function loadData() {
+  const tasks = await TaskManager.getTasks();
+  for (let key in tasks) {
+    const taskUi = Task.buildTaskItem(tasks[key]);
+    taskContainer.innerHTML += taskUi;
   }
 }
+
+form.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const target = event.target;
+
+  const name = target.name.value;
+  const description = target.description.value;
+  const dueDate = target.due_date.value;
+
+  const task = new Task(name, description, dueDate, false, 0);
+  TaskManager.addTask(task);
+  form.reset();
+  document.getElementById("task-modal").checked = false;
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  loadData();
+});
+
+const editTask = document.getElementById("edit-task");
+const deleteTask = document.getElementById("delete-task");
+
+console.log(deleteTask);

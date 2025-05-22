@@ -1,13 +1,112 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEOFLIX | Futuristic Movie Experience</title>
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS desde CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Configuración de Tailwind -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#00f7ff',
+            secondary: '#ff00e5',
+            accent: '#fffc00',
+            background: '#050518',
+            card: 'rgba(25, 25, 50, 0.6)'
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Estilos personalizados -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="movie-app">
+    <div class="noise-overlay"></div>
+    <div class="grid-overlay"></div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading-overlay">
+      <div class="loading-spinner"></div>
+    </div>
+
+    <header class="header">
+      <div class="logo">
+        <span class="logo-text">NEO<span class="logo-highlight">FLIX</span></span>
+        <div class="logo-glow"></div>
+      </div>
+      <div class="search-container">
+        <input type="text" id="search-input" placeholder="Search the cinematic universe...">
+        <button id="search-btn">
+          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+      </div>
+      <nav>
+        <button class="nav-btn active" data-filter="all">All</button>
+        <button class="nav-btn" data-filter="action">Action</button>
+        <button class="nav-btn" data-filter="sci-fi">Sci-Fi</button>
+        <button class="nav-btn" data-filter="drama">Drama</button>
+      </nav>
+    </header>
+
+    <main class="main view-transition view-visible" id="main-content">
+      <section class="featured-movie" id="featured-movie">
+        <!-- Featured movie will be inserted here by JavaScript -->
+      </section>
+
+      <section class="movies-section">
+        <div class="section-header">
+          <h2>Trending in the <span class="highlight" id="genre-title">Metaverse</span></h2>
+          <div class="sort-controls">
+            <label for="sort-select">Sort by:</label>
+            <select id="sort-select">
+              <option value="popularity">Popularity</option>
+              <option value="rating">Rating</option>
+              <option value="date">Release Date</option>
+            </select>
+          </div>
+        </div>
+        <div class="movies-container" id="movies-container">
+          <!-- Movies will be inserted here by JavaScript -->
+        </div>
+      </section>
+    </main>
+
+    <div class="movie-modal" id="movie-modal">
+      <div class="modal-content">
+        <button class="close-modal" id="close-modal">×</button>
+        <div class="modal-body" id="modal-body">
+          <!-- Movie details will be inserted here by JavaScript -->
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <p>© 2025 NEOFLIX | The Future of Cinema</p>
+        <div class="social-links">
+          <a href="#" class="social-link">FB</a>
+          <a href="#" class="social-link">TW</a>
+          <a href="#" class="social-link">IG</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script type="module" src="./src/main.ts"></script>
+</body>
 </html>
